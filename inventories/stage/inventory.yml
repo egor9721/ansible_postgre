@@ -1,0 +1,14 @@
+deb-servers:
+  hosts: 
+    srv-deb-db:
+      ansible_host: 192.168.56.200
+
+rhel-servers:
+  hosts:
+    srv-rhel-db:
+      ansible_host: 192.168.56.2
+
+db-servers:
+  children:
+    deb-servers:
+    rhel-servers:

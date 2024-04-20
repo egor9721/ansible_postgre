@@ -1,0 +1,10 @@
+---
+# tasks file for test_role
+- name: "task 1"
+  include_tasks: first_task.yml
+
+- name: "task 2"
+  include_tasks: second_task.yml
+
+- name: "task 3"
+  include_tasks: third_task.yml

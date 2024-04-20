@@ -1,0 +1,5 @@
+- name: "Test tasks"
+  hosts: db-servers
+  become: yes
+  roles:
+  - test_role

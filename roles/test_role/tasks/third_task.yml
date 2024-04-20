@@ -1,0 +1,22 @@
+- name: "Create user postgres"
+  user:
+    name: postgres
+    create_home: false
+    shell: /bin/bash
+    state: present
+
+- name: "Create directory /etc/postgres"
+  file:
+    path: "/etc/postgres/"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: 0644
+
+- name: "Push test_config to servers"
+  template:
+    src: postgre.conf.j2
+    dest: /etc/postgres/test_config.conf
+    mode: 0644
+    owner: postgres
+    group: postgres

@@ -1,0 +1,10 @@
+# задача 2
+
+- name: "Check OS family"
+  setup: 
+    filter: 'ansible_os_family'
+
+- name: "Install packages"
+  package:
+    name: "{{ deb_packages if ansible_os_family == 'Debian' else rpm_packages }}"
+    state: present

@@ -1,0 +1,18 @@
+# задача номер 1
+
+- name: "Check free size /"
+  shell: "df --output=avail / | tail -1"
+  register: root_freespace
+
+- name: "find /tmp in /etc/fstab"
+  shell: 'cat /etc/fstab | grep -E ".*/tmp.*defaults|.*/tmp.*exec"'
+  register: tmp_line
+  ignore_errors: True
+
+- fail:
+    msg: "/tmp is not exec in /etc/fstab"
+  when: tmp_line.stdout == ""
+
+- fail:
+    msg: "Free space in root directory less then 10 GB"
+  when: root_freespace.stdout|float is lt 10000000
